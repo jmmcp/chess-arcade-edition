@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PieceList from './components/PieceList';
+import './App.scss';
 
 function App() {
+
+  const pieces = [
+    {
+      name: "Cool Piece"
+    },
+    {
+      name: "La Jinn, Mystical Genie of the Lamp",
+      rules: "stupid stinky ugly"
+    },
+    {
+      name: "Bad Hell Piece",
+      icons: ["H", "J"],
+      rules: "piece is from hell"
+    }
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PieceList pieces={pieces} />
     </div>
   );
 }

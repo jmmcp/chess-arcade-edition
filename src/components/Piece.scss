@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
+
+$piece-size: 2in;
+$piece-padding: 0.075in;
+
+$icon-size: 0.25in;
+$icon-margin: 0.05in;
+
+$grid-square-size: 0.2in;
+
+.piece {
+	width: $piece-size;
+	height: $piece-size;
+	outline: 1px solid black;
+
+	font-family: 'Bree Serif';
+	font-size: 10pt;
+	// justify-content: space-between;
+	position: relative;
+}
+
+.piece-contents {
+
+	padding: $piece-padding;
+	height: 100%;
+	
+
+	display: flex;
+	flex-direction: column;
+
+	.piece-name {
+		font-size: 13pt;
+		text-align: left;
+		// white-space: nowrap;
+
+		width: $piece-size - $piece-padding*2 - $icon-size;
+		
+		background: red;
+	}
+
+	.piece-icons {
+		position: absolute;
+		right: $piece-padding;
+		top: $piece-padding;
+
+		display: flex;
+		flex-direction: column;
+
+		.piece-icon {
+			width: $icon-size;
+			height: $icon-size;
+			background: blue;
+			margin-bottom: $icon-margin;
+		}
+	}
+
+	.piece-grid {
+		
+		width: $grid-square-size * 5;
+		height: $grid-square-size * 5;
+		margin: 0;
+		padding: 0;
+
+		margin-left: 0.15in;
+		border-collapse: collapse;
+		table-layout: fixed;
+
+		tr {
+
+			td {
+				width: $grid-square-size;
+				height: $grid-square-size;
+				border: 1px solid black;
+			}
+		}
+	}
+
+	.piece-rules {
+		font-style: italic;
+		font-size: 8pt;
+		text-align: right;
+	}
+}
