@@ -1,6 +1,9 @@
 import React from 'react';
-import ScaleText from 'react-scale-text';
+import Textfit from 'react-textfit';
 import './Piece.scss';
+import tileCodes from './tilecodes';
+
+
 
 class Piece extends React.Component {
 
@@ -13,11 +16,11 @@ class Piece extends React.Component {
 				"dab"
 			],
 			grid: [
-				[" ", " ", " ", " ", " "],
-				[" ", " ", " ", " ", " "],
-				[" ", " ", "X", " ", " "],
-				[" ", " ", " ", " ", " "],
-				[" ", " ", " ", " ", " "]
+				["a7", "  ", "a8", "  ", "a9"],
+				["  ", "\\", "||", "//", "  "],
+				["a4", "==", "XX", "==", "a6"],
+				["  ", "//", "||", "\\", "  "],
+				["a1", "  ", "a2", "  ", "a3"]
 			],
 			rules: "This piece has no special rules. You can leave this blank.",
 
@@ -35,7 +38,8 @@ class Piece extends React.Component {
 	}
 
 	gridSquare(char) {
-		return <td >{char}</td>;
+		const fileName = tileCodes[char] === undefined ? null : `tiles/${tileCodes[char]}.svg`;
+		return <div className="piece-grid-square" ><img src={fileName} /></div>;
 	}
 
 	render() {
@@ -43,25 +47,27 @@ class Piece extends React.Component {
 		return (
 			<div className="piece">
 				<div className="piece-contents">
-					<div className="piece-name">
-						<ScaleText>
-							<span>{data.name}</span>
-						</ScaleText>
+					<div className="piece-name-wrap">
+						<div className="piece-name">
+							<Textfit>
+								{data.name}
+							</Textfit>
+						</div>
 					</div>
 					<div className="piece-icons">
 						{data.icons.map((item) => {
 							return this.iconSquare(item);
 						})}
 					</div>
-					<table className="piece-grid">
+					<div className="piece-grid">
 						{data.grid.map((i) => {
-							return(<tr>
+							return (<div className="piece-grid-row">
 								{i.map((j) => {
 									return this.gridSquare(j);
 								})}
-							</tr>);
+							</div>);
 						})}
-					</table>
+					</div>
 					<div className="flex-spacer"></div>
 					<div className="piece-rules">{data.rules}</div>
 				</div>
